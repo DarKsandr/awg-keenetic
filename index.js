@@ -17,11 +17,15 @@ window.addEventListener('load', function () {
                res = res.replace(`{${key.toLowerCase()}}`, value);
            }
         });
-        
+
         result.innerHTML = res;
     }
 
     make();
     name.addEventListener('input', make);
     config.addEventListener('input', make);
+
+    document.querySelectorAll('pre').forEach(el => el.addEventListener('click', function (){
+        navigator.clipboard.writeText(this.innerText.trim());
+    }));
 });
