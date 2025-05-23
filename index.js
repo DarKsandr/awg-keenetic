@@ -3,6 +3,7 @@ window.addEventListener('load', function () {
     const name = document.querySelector('#name');
     const config = document.querySelector('#config');
     const result = document.querySelector('#result');
+    const zeros = document.querySelector('#zeros');
 
     function make(){
         let res = template.innerText;
@@ -18,12 +19,17 @@ window.addEventListener('load', function () {
            }
         });
 
+        if(zeros.checked){
+            res = res.replace(`{s1}`, 0).replace(`{s2}`, 0);
+        }
+
         result.innerHTML = res;
     }
 
     make();
     name.addEventListener('input', make);
     config.addEventListener('input', make);
+    zeros.addEventListener('change', make);
 
     document.querySelectorAll('pre').forEach(el => el.addEventListener('click', function (){
         navigator.clipboard.writeText(this.innerText.trim());
